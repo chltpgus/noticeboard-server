@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = process.env.PORT;
+const PORT = process.env.PORT  //포트번호 저장
 
 app.get('/', (req, res) => {
     res.json({
@@ -8,6 +8,4 @@ app.get('/', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-    console.log(`server is listening at localhost:${process.env.PORT}`);
-});
+app.listen(PORT);
