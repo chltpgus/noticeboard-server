@@ -89,32 +89,26 @@ server.get("/signup", (req, res) => { // get요청이 오면
     connection.query("SELECT * FROM signup", function (err, row) { 
         res.json(row);                                  // 서버에 json으로 보내기
     });
+
+    
 });
 
 
 server.post("/signup", (req, res) => { // post 요청이 오면
 
-    connection.query("SELECT * FROM user", function (err, row) {
 
-        signup1 = row;
-        users = req.body;
-        res.json(signup1);                                  // 서버에 json으로 보내기
-        console.log(row);
-
-        
+    connection.query("SELECT * FROM signup", function (err, row) {
+        signup1 = req.body;                             //POST로 전송된 jSON signup1에 저장
+        res.json(row);                                  // 서버에 json으로 보내기 
+        console.log(signup1);
         let sql = ("INSERT into signup( email, password, nickname)values('" + signup1.email + "','" + signup1.password + "','" + signup1.nickname + "')");//id, email, password, nickname
-    
-        connection.query(sql, function (err) {  //클라이언트한테 온 정보를 업데이트
-            if (err) {
-                return console.log(err.message);
-            }
-            console.log('Insert');
-        
-        
+        connection.query(sql, function (err, res) {
+            if (err) throw err;
+            console.log("Insert add");
+
         });
     });
 });
-
 
 /*
 server.post("/api/user", (req, res) => { // post 요청이 오면
