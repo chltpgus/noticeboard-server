@@ -2,7 +2,7 @@ const express = require("express");  //express 서버 구성
 const bodyParser = require('body-parser') // 바디펄스로 POST로 온 것을 확인
 const server = express();
 const http = require("http");
-const PORT = process.env.PORT || 3000;  //포트번호 저장
+const PORT = process.env.PORT || 80;  //포트번호 저장
 server.use(bodyParser.json());
 const cors = require('cors');   
 
@@ -81,14 +81,27 @@ connection.connect(function(err){
 
 server.get("/signup", (req, res) => { // get요청이 오면 
 
-    connection.query("SELECT * FROM signup", function (err, row) {
-        signup1 = req.body;
+    connection.query("SELECT * FROM signup", function (err, row) { 
         res.json(row);                                  // 서버에 json으로 보내기
-        console.log(row); 
     });
 
     
 });
+
+server.post("/signup", (req, res) => { // post 요청이 오면
+
+    connection.query("SELECT * FROM signup", function (err, row) {
+        signup1 = req.body;                             //POST로 전송된 jSON signup1에 저장
+        res.json(row);                                  // 서버에 json으로 보내기 
+        console.log(signup1);
+        let sql = ("INSERT into signup( email, password, nickname)values('" + signup1.email + "','" + signup1.password + "','" + signup1.nickname + "')");//id, email, password, nickname
+        connection.query(sql, function (err, res) {
+            if (err) throw err;
+            console.log("1 entry added");
+        });
+    });
+});
+
 /*
 server.post("/api/user", (req, res) => { // post 요청이 오면
 
