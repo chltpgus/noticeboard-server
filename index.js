@@ -11,6 +11,7 @@ let id = 1, name = "user number", num = 3;  //MYSQL UPDATE에 들어가는 변�
 let signup1 =   //사용자 수가 들어가는 객체 선언
     [{
         
+        
 
     }];
 
