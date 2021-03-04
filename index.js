@@ -13,18 +13,18 @@ let signup1 =   //사용자 수가 들어가는 객체 선언
         
 
     }];
-/*
+
 const corsOptions = {  //클라이언트가 cors문제 없이 들어 올 수 있게 권한을 줌
   origin: "https://bulletinboardsite.netlify.app/",
   credentials: true
 }
 server.use(cors(corsOptions));
-*/
+
 let mysql = require('mysql');  //ClearDB MYSQL 사용
-/*
+
 setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주소를 계속 보내줌
-    http.get("https://noticeboard--server.herokuapp.com/");
-}, 3000);*/
+    http.get("http://noticeboard--server.herokuapp.com/signup");
+}, 3000);
 
 let connection = mysql.createConnection({    //MYSQL CONNECTION
     host     : 'us-cdbr-east-03.cleardb.com',
