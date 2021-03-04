@@ -70,6 +70,8 @@ connection.connect(function(err){
     });
 });
 */
+
+
 /* //테이블 제거
 connection.connect(function(err){
     if(err)throw err;
