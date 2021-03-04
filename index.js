@@ -89,7 +89,6 @@ server.get("/signup", (req, res) => { // get요청이 오면
     connection.query("SELECT * FROM signup", function (err, row) { 
         res.json(row);                                  // 서버에 json으로 보내기
     });
-    
 });
 
 
