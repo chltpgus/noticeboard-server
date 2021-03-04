@@ -33,7 +33,7 @@ let connection = mysql.createConnection({    //MYSQL CONNECTION
     user     : 'b4b1c76af6f030',
     password : '49d11fcb',
     database : 'heroku_780fd63b35029e5'
-    
+
    });
 
    //테이블 생성
@@ -103,6 +103,7 @@ server.post("/signup", (req, res) => { // post 요청이 오면
         connection.query(sql, function (err, res) {
             if (err) throw err;
             console.log("Insert add");
+            
         });
     });
 });
