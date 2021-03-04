@@ -101,6 +101,7 @@ server.post("/signup", (req, res) => { // post 요청이 오면
         res.json(signup1);                                  // 서버에 json으로 보내기
         console.log(row);
 
+        
         let sql = ("INSERT into signup( email, password, nickname)values('" + signup1.email + "','" + signup1.password + "','" + signup1.nickname + "')");//id, email, password, nickname
     
         connection.query(sql, function (err) {  //클라이언트한테 온 정보를 업데이트
