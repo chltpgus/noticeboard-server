@@ -15,7 +15,7 @@ let signup1 =   //사용자 수가 들어가는 객체 선언
     }];
 
 const corsOptions = {  //클라이언트가 cors문제 없이 들어 올 수 있게 권한을 줌
-  origin: "https://bulletinboardsite.netlify.app/",
+  origin: "https://bulletinboardsite.netlify.app/signup",
   credentials: true
 }
 server.use(cors(corsOptions));
