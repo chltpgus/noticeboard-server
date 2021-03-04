@@ -105,7 +105,6 @@ server.post("/signup", (req, res) => { // post 요청이 오면
         connection.query(sql, function (err, res) {
             if (err) throw err;
             console.log("Insert add");
-
         });
     });
 });
