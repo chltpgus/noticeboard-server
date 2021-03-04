@@ -11,7 +11,7 @@ let id = 1, name = "user number", num = 3;  //MYSQL UPDATE에 들어가는 변�
 let signup1 =   //사용자 수가 들어가는 객체 선언
     [{
         
-        
+
 
     }];
 
@@ -80,6 +80,7 @@ connection.connect(function(err){
 });
 */
 
+/*
 server.get("/signup", (req, res) => { // get요청이 오면 
 
     connection.query("SELECT * FROM signup", function (err, row) { 
@@ -88,7 +89,7 @@ server.get("/signup", (req, res) => { // get요청이 오면
 
     
 });
-
+*/
 server.post("/signup", (req, res) => { // post 요청이 오면
 
     connection.query("SELECT * FROM signup", function (err, row) {
