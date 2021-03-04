@@ -92,6 +92,7 @@ server.get("/signup", (req, res) => { // get요청이 오면
 */
 server.post("/signup", (req, res) => { // post 요청이 오면
 
+   
     connection.query("SELECT * FROM signup", function (err, row) {
         signup1 = req.body;                             //POST로 전송된 jSON signup1에 저장
         res.json(row);                                  // 서버에 json으로 보내기 
