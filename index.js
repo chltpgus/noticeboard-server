@@ -22,11 +22,11 @@ const corsOptions = {  //클라이언트가 cors문제 없이 들어 올 수 있
 server.use(cors(corsOptions));
 
 let mysql = require('mysql');  //ClearDB MYSQL 사용
-
+/*
 setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주소를 계속 보내줌
     http.get("http://noticeboard--server.herokuapp.com/signup");
 }, 3000);
-
+*/
 let connection = mysql.createConnection({    //MYSQL CONNECTION
     host     : 'us-cdbr-east-03.cleardb.com',
     port     : '3306',
@@ -92,13 +92,15 @@ server.get("/signup", (req, res) => { // get요청이 오면
         console.log(signup1);
         let email01 = signup1.email, password01 = signup1.password, nickname01 = signup1.nickname;
         let sql = ("INSERT into signup( email, password, nickname)values('" + email01 + "','" + password01 + "','" + nickname01 + "')");//id, email, password, nickname
-        connection.query(sql, function (err, res) {
-            if (err) throw err;
-            console.log("Insert add");
-        });
+        
+        if (email01 != undefined && password01 != undefined && nickname01 != undefined ) {
+            connection.query(sql, function (err, res) {
+                if (err) throw err;
+                console.log("Insert add");
+            });
+        }
     });
-
-    
+  
 });
 
 /*
