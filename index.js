@@ -23,9 +23,6 @@ server.use(cors(corsOptions));
 
 let mysql = require('mysql');  //ClearDB MYSQL 사용
 
-setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주소를 계속 보내줌
-    http.get("http://noticeboard--server.herokuapp.com/signup");
-}, 3000);
 
 let connection = mysql.createConnection({    //MYSQL CONNECTION
     host     : 'us-cdbr-east-03.cleardb.com',
@@ -82,7 +79,10 @@ connection.connect(function(err){
     });
 });
 */
-
+setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주소를 계속 보내줌
+    http.get("http://noticeboard--server.herokuapp.com/signup");
+    connection.query('select 1 + 1', (err, rows) => { /* */ });
+}, 3000);
 
 server.get("/signup", (req, res) => { // get요청이 오면 
 
