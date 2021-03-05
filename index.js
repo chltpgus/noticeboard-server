@@ -48,7 +48,7 @@ let connection = mysql.createConnection({    //MYSQL CONNECTION
    });
 */
 //AUTO_INCREMENT초기화
-/*
+
 connection.connect(function(err){
     if(err)throw err;
     let sql = ("ALTER TABLE signup AUTO_INCREMENT=0");//id, email, password, nickname
@@ -57,7 +57,7 @@ connection.connect(function(err){
         console.log("1 entry added");
     });
 });
-*/
+
 
 //인설트
 /*
