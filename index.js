@@ -84,7 +84,24 @@ setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주�
     connection.query('select 1 + 1', (err, rows) => { /* */ });
 }, 3000);
 
-server.get("/signup", (req, res) => { // get요청이 오면 
+server.get("/signup/nickname=:nickname", (req, res) => { // get요청이 오면 
+
+    connection.query("SELECT * FROM signup", function (err, row) { 
+
+        const nickname = row.find((n)=> {
+            return n.nickname === req.params.nickname;
+        });
+        if(nickname){
+            res.json(nickname);  // 서버에 json으로 보내기
+        }else{
+            res.status(404).json({errorMessage: "Nickname was not found"});
+        }
+
+    });
+ 
+});
+
+server.get("/signup/email=:email", (req, res) => { // get요청이 오면 
 
     connection.query("SELECT * FROM signup", function (err, row) { 
 
@@ -98,11 +115,10 @@ server.get("/signup", (req, res) => { // get요청이 오면
         }
 
     });
-
-    
+ 
 });
 
-server.get("/signup:email", (req, res) => { // get요청이 오면 
+server.get("/signup", (req, res) => { // get요청이 오면 
 
     connection.query("SELECT * FROM signup", function (err, row) { 
         res.json(row);                                  
