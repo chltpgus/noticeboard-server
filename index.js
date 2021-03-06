@@ -87,7 +87,25 @@ setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주�
 server.get("/signup", (req, res) => { // get요청이 오면 
 
     connection.query("SELECT * FROM signup", function (err, row) { 
-        res.json(row);                                  // 서버에 json으로 보내기
+
+        const email = row.find((e)=> {
+            return e.email === req.params.email;
+        });
+        if(email){
+            res.json(email);  // 서버에 json으로 보내기
+        }else{
+            res.status(404).json({errorMessage: "Email was not found"});
+        }
+
+    });
+
+    
+});
+
+server.get("/signup:email", (req, res) => { // get요청이 오면 
+
+    connection.query("SELECT * FROM signup", function (err, row) { 
+        res.json(row);                                  
     });
 
     
@@ -149,3 +167,5 @@ Email Address:	chltpgusg@gmail.com
 Phone Number:	1234567891
 User ID:	AC2537203063D5ED2B53DF883B0A422C
 */
+
+//Error: Connection lost: The server closed the connection.
