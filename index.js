@@ -94,7 +94,7 @@ server.get("/signup/nickname=:nickname", (req, res) => { // get요청이 오면
         if(nickname){
             res.json(nickname);  // 서버에 json으로 보내기
         }else{
-            res.status(404).json({errorMessage: "Nickname was not found"});
+            res.status(404).json({nickname: "Nickname was not found"});
         }
 
     });
@@ -111,7 +111,7 @@ server.get("/signup/email=:email", (req, res) => { // get요청이 오면
         if(email){
             res.json(email);  // 서버에 json으로 보내기
         }else{
-            res.status(404).json({errorMessage: "Email was not found"});
+            res.status(404).json({email: "Email was not found"});
         }
 
     });
