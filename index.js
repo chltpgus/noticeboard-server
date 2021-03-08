@@ -84,22 +84,7 @@ setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주�
     connection.query('select 1 + 1', (err, rows) => { /* */ });
 }, 3000);
 
-server.get("/signup/nickname=:nickname", (req, res) => { // get요청이 오면 
 
-    connection.query("SELECT * FROM signup", function (err, row) { 
-
-        const nickname = row.find((n)=> {
-            return n.nickname === req.params.nickname;
-        });
-        if(nickname){
-            res.json(nickname);  // 서버에 json으로 보내기
-        }else{
-            res.json({nickname: "Nickname was not found"});
-        }
-
-    });
- 
-});
 
 server.get("/signup/email=:email", (req, res) => { // get요청이 오면 
 
@@ -112,6 +97,40 @@ server.get("/signup/email=:email", (req, res) => { // get요청이 오면
             res.json(email);  // 서버에 json으로 보내기
         }else{
             res.json({email: "Email was not found"});
+        }
+
+    });
+ 
+});
+
+server.get("/signup/email=:password", (req, res) => { // get요청이 오면 
+
+    connection.query("SELECT * FROM signup", function (err, row) { 
+
+        const password = row.find((p)=> {
+            return p.email === req.params.password;
+        });
+        if(password){
+            res.json(password);  // 서버에 json으로 보내기
+        }else{
+            res.json({password: "Password was not found"});
+        }
+
+    });
+ 
+});
+
+server.get("/signup/nickname=:nickname", (req, res) => { // get요청이 오면 
+
+    connection.query("SELECT * FROM signup", function (err, row) { 
+
+        const nickname = row.find((n)=> {
+            return n.nickname === req.params.nickname;
+        });
+        if(nickname){
+            res.json(nickname);  // 서버에 json으로 보내기
+        }else{
+            res.json({nickname: "Nickname was not found"});
         }
 
     });
