@@ -108,7 +108,7 @@ server.get("/signup/password=:password", (req, res) => { // get요청이 오면
     connection.query("SELECT * FROM signup", function (err, row) { 
 
         const password = row.find((p)=> {
-            return p.email === req.params.password;
+            return p.password === req.params.password;
         });
         if(password){
             res.json(password);  // 서버에 json으로 보내기
