@@ -103,7 +103,7 @@ server.get("/signup/email=:email", (req, res) => { // get요청이 오면
  
 });
 
-server.get("/signup/email=:password", (req, res) => { // get요청이 오면 
+server.get("/signup/password=:password", (req, res) => { // get요청이 오면 
 
     connection.query("SELECT * FROM signup", function (err, row) { 
 
