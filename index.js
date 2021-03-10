@@ -37,7 +37,7 @@ let connection = mysql.createConnection({    //MYSQL CONNECTION
 /*
    connection.connect(function(err){
        if(err)throw err;
-       let sql = ("CREATE TABLE signup(id INT AUTO_INCREMENT PRIMARY KEY, email varchar(20), password varchar(20), nickname varchar(20))");//id, email, password, nickname
+       let sql = ("CREATE TABLE Written(id INT AUTO_INCREMENT PRIMARY KEY, nickname varchar(20), title varchar(40), date varchar(20), maintext varchar(150))");//글자수 제한은 한글 75자
        connection.query(sql, function(err, res){
            if(err)throw err;
            console.log("table created");
@@ -147,7 +147,7 @@ server.get("/signup", (req, res) => { // get요청이 오면
 });
 
 
-server.post("/signup", (req, res) => { // get요청이 오면 
+server.post("/signup", (req, res) => { // post요청이 오면 
 
     connection.query("SELECT * FROM signup", function (err, row) {
         signup1 = req.body;                             //POST로 전송된 jSON signup1에 저장
@@ -157,6 +157,33 @@ server.post("/signup", (req, res) => { // get요청이 오면
         let sql = ("INSERT into signup( email, password, nickname)values('" + email01 + "','" + password01 + "','" + nickname01 + "')");//id, email, password, nickname
         
         if (email01 != undefined && password01 != undefined && nickname01 != undefined ) {
+            connection.query(sql, function (err, res) {
+                if (err) throw err;
+                console.log("Insert add");
+            });
+        }
+    });
+});
+
+server.get("/written", (req, res) => { // get요청이 오면 
+
+    connection.query("SELECT * FROM written", function (err, row) { 
+        res.json(row);                                  
+    });
+
+    
+});
+
+server.post("/written", (req, res) => { // post요청이 오면 
+
+    connection.query("SELECT * FROM written", function (err, row) {
+        written1 = req.body;                             //POST로 전송된 jSON signup1에 저장
+        res.json(row);                                  // 서버에 json으로 보내기 
+        console.log(written1);
+        let nickname01=written.nickname, title01 = written.title, data01 = written.date,  maintext01 = written.maintext;
+        let sql = ("INSERT into signup( nickname, title, date, maintext)values('" + nickname01 + "','" + title01 + "','" + data01 + "','"+ maintext01 +"')");//id, email, password, nickname
+        
+        if (nickname01 != undefined && title01 != undefined && data01 != undefined && maintext01 != undefined) {
             connection.query(sql, function (err, res) {
                 if (err) throw err;
                 console.log("Insert add");
