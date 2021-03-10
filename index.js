@@ -180,11 +180,12 @@ server.post("/written", (req, res) => { // post요청이 오면
         written1 = req.body;                             //POST로 전송된 jSON signup1에 저장
         res.json(row);                                  // 서버에 json으로 보내기 
         console.log(written1);
-        let nickname01=written.nickname, title01 = written.title, data01 = written.date,  maintext01 = written.maintext;
-        let sql = ("INSERT into signup( nickname, title, date, maintext)values('" + nickname01 + "','" + title01 + "','" + data01 + "','"+ maintext01 +"')");//id, email, password, nickname
+        let nickname01=written1.nickname, title01 = written1.title, data01 = written1.date,  maintext01 = written1.maintext;
+        let sql = ("INSERT into written( nickname, title, date, maintext)values('" + nickname01 + "','" + title01 + "','" + data01 + "','"+ maintext01 +"')");//id, email, password, nickname
         
         if (nickname01 != undefined && title01 != undefined && data01 != undefined && maintext01 != undefined) {
             connection.query(sql, function (err, res) {
+                
                 if (err) throw err;
                 console.log("Insert add");
             });
