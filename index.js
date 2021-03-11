@@ -174,6 +174,23 @@ server.get("/written", (req, res) => { // get요청이 오면
     
 });
 
+server.get("/written/nickname=:nickname", (req, res) => { // get요청이 오면 
+
+    connection.query("SELECT * FROM written", function (err, row) { 
+
+        const nickname = row.find((n)=> {
+            return n.nickname === req.params.nickname;
+        });
+        if(nickname){
+            res.json(nickname);  // 서버에 json으로 보내기
+        }else{
+            res.json({nickname: "Nickname was not found"});
+        }
+
+    });
+ 
+});
+
 server.post("/written", (req, res) => { // post요청이 오면 
 
     connection.query("SELECT * FROM written", function (err, row) {
