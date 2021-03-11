@@ -185,7 +185,6 @@ server.get("/written/nickname=:nickname", (req, res) => { // get요청이 오면
         }else{
             res.json({nickname: "Nickname was not found"});
         }
-
     });
  
 });
