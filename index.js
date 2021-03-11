@@ -204,6 +204,7 @@ server.post("/written", (req, res) => { // post요청이 오면
                 
                 if (err) throw err;
                 console.log("Insert add");
+                
             });
         }
     });
