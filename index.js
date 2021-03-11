@@ -171,7 +171,6 @@ server.get("/written", (req, res) => { // get요청이 오면
         res.json(row);                                  
     });
 
-    
 });
 
 server.get("/written/nickname=:nickname", (req, res) => { // get요청이 오면 
