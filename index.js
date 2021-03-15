@@ -227,6 +227,25 @@ server.post("/written/delete", (req, res) => { // post요청이 오면
     });
 });
 
+server.post("/written/update", (req, res) => { // post요청이 오면 
+
+    connection.query("SELECT * FROM written", function (err, row) {
+        written1 = req.body;                             //POST로 전송된 jSON signup1에 저장
+        res.json(row);                                  // 서버에 json으로 보내기 
+        console.log(written1);
+        let nickname01=written1.nickname, title01 = written1.title, data01 = written1.date,  maintext01 = written1.maintext, title02 = written1.title2, maintext02 = written1.maintext2;
+        let sql = ("DELETE from written where nickname = '" + nickname01 + "'and title = '" + title01 + "'and date = '" + data01 + "'and maintext = '"+ maintext01 +"'");//id, email, password, nickname
+        let UPDATE = "UPDATE written SET title = '" + title02 + "', maintext = '"+ maintext02 + "' WHERE nickname = '" + nickname01 + "'and title = '" + title01 + "'and date = '" + data01 + "'and maintext = '"+ maintext01 +"'"
+        if (nickname01 != undefined && title01 != undefined && data01 != undefined && maintext01 != undefined) {
+            connection.query(UPDATE, function (err, res) {
+                
+                if (err) throw err;
+                console.log("update");
+            });
+        }
+    });
+});
+
 
 
 /*
