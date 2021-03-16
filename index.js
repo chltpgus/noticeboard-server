@@ -81,6 +81,7 @@ connection.connect(function(err){
 */
 setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주소를 계속 보내줌
     http.get("http://noticeboard--server.herokuapp.com/signup");
+    http.get("http://noticeboard--server.herokuapp.com");
     connection.query('select 1 + 1', (err, rows) => { /* */ });
 }, 3000);
 
