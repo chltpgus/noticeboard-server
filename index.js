@@ -37,7 +37,7 @@ let connection = mysql.createConnection({    //MYSQL CONNECTION
 /*
    connection.connect(function(err){
        if(err)throw err;
-       let sql = ("CREATE TABLE Written(id INT AUTO_INCREMENT PRIMARY KEY, nickname varchar(20), title varchar(40), date varchar(20), maintext varchar(150))");//글자수 제한은 한글 75자
+       let sql = ("CREATE TABLE Written(id INT AUTO_INCREMENT PRIMARY KEY, nickname varchar(20), title varchar(40), date varchar(20), maintext varchar(400))");//글자수 제한은 한글 200자
        connection.query(sql, function(err, res){
            if(err)throw err;
            console.log("table created");
@@ -57,22 +57,22 @@ connection.connect(function(err){
 */
 
 //인설트
-/*
+
 connection.connect(function(err){
     if(err)throw err;
-    let sql = ("INSERT into signup( email, password, nickname)values('rlatpgus@naver.com','tpgus12','hyeon')");//id, email, password, nickname
+    let sql = ("INSERT into written( nickname, title, date, maintext)values('tpgus','sdf','2021-3-17','sdf')");//id, email, password, nickname
     connection.query(sql, function(err, res){
         if(err)throw err;
         console.log("1 entry added");
     });
 });
-*/
 
+/*
 
-/* //테이블 제거
+ //테이블 제거
 connection.connect(function(err){
     if(err)throw err;
-    let sql = ("DROP table signup");//id, email, password, nickname
+    let sql = ("DROP table written");//id, email, password, nickname
     connection.query(sql, function(err, res){
         if(err)throw err;
         console.log("1 entry added");
