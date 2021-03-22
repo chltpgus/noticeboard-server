@@ -9,5 +9,5 @@ Hroku(웹호스팅), node.js, express, ClearDB(Mysql)
 # 프로젝트 설명
 notice-board-server는 notice-board의 로그인, 글 작성, 글 수정, 글 삭제 등을 해주는 웹서버다.
 
-<p align="center"><img src="https://user-images.githubusercontent.com/67909892/111970371-8f19d480-8b3e-11eb-910b-95586ae2d82d.png" align="center" width="44%"><img src="https://user-images.githubusercontent.com/67909892/111970591-c8eadb00-8b3e-11eb-81b3-c9fa985c1c81.png" align="center" width="40%"></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/67909892/111970686-e1f38c00-8b3e-11eb-9586-2fe59dea1a99.png" align="center" width="44%"><img src="https://user-images.githubusercontent.com/67909892/111970371-8f19d480-8b3e-11eb-910b-95586ae2d82d.png" align="center" width="40%"></p>
 <p align="center">BrowserRouter, Route를 사용해서 Header, component, Footer를 구성하고 이벤트가 있으면 component만 번경되는 식으로 구성했다.</p>
