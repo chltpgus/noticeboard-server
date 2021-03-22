@@ -103,22 +103,6 @@ server.get("/signup/email=:email", (req, res) => { // get요청이 오면
  
 });
 
-server.get("/signup/password=:password", (req, res) => { // get요청이 오면 
-
-    connection.query("SELECT * FROM signup", function (err, row) { 
-
-        const password = row.find((p)=> {
-            return p.password === req.params.password;
-        });
-        if(password){
-            res.json(password);  // 서버에 json으로 보내기
-        }else{
-            res.json({password: "Password was not found"});
-        }
-
-    });
- 
-});
 
 server.get("/signup/nickname=:nickname", (req, res) => { // get요청이 오면 
 
