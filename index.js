@@ -155,9 +155,6 @@ server.post("/written/update", (req, res) => { // post 전송이 오면
 });
 
 
-
-
-
 server.listen(PORT);
 
 
