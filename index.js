@@ -152,8 +152,7 @@ server.post("/signup", (req, res) => { // post요청이 오면
     connection.query("SELECT * FROM signup", function (err, row) {
         signup1 = req.body;                             //POST로 전송된 jSON signup1에 저장
         res.json(row);                                  // 서버에 json으로 보내기 
-        console.log(signup1);
-        let email01 = signup1.email, password01 = signup1.password, nickname01 = signup1.nickname;
+        let email01 = signup1.email, password01 = signup1.password, nickname01 = signup1.nickname;  //변수에 POST 전송으로 온 값을 저장
         let sql = ("INSERT into signup( email, password, nickname)values('" + email01 + "','" + password01 + "','" + nickname01 + "')");//id, email, password, nickname
         
         if (email01 != undefined && password01 != undefined && nickname01 != undefined ) {
@@ -171,22 +170,6 @@ server.get("/written", (req, res) => { // get요청이 오면
         res.json(row);                                  
     });
 
-});
-
-server.get("/written/nickname=:nickname", (req, res) => { // get요청이 오면 
-
-    connection.query("SELECT * FROM written", function (err, row) { 
-
-        const nickname = row.find((n)=> {
-            return n.nickname === req.params.nickname;
-        });
-        if(nickname){
-            res.json(nickname);  // 서버에 json으로 보내기
-        }else{
-            res.json({nickname: "Nickname was not found"});
-        }
-    });
- 
 });
 
 server.post("/written", (req, res) => { // post요청이 오면 
@@ -207,6 +190,7 @@ server.post("/written", (req, res) => { // post요청이 오면
         }
     });
 });
+
 
 server.post("/written/delete", (req, res) => { // post요청이 오면 
 
