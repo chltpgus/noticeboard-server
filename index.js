@@ -56,7 +56,7 @@ connection.connect(function(err){
 */
 
 //인설트
-
+/*
 connection.connect(function(err){
     if(err)throw err;
     let sql = ("INSERT into written( nickname, title, date, maintext)values('tpgus','sdf','2021-3-17','sdf')");//id, email, password, nickname
@@ -65,7 +65,7 @@ connection.connect(function(err){
         console.log("1 entry added");
     });
 });
-
+*/
 /*
 
  //테이블 제거
@@ -89,7 +89,6 @@ setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주�
 server.get("/signup/email=:email", (req, res) => { // get요청이 오면 
 
     connection.query("SELECT * FROM signup", function (err, row) { 
-
         const email = row.find((e)=> {
             return e.email === req.params.email;
         });
@@ -102,12 +101,9 @@ server.get("/signup/email=:email", (req, res) => { // get요청이 오면
     });
  
 });
-
-
 server.get("/signup/nickname=:nickname", (req, res) => { // get요청이 오면 
 
     connection.query("SELECT * FROM signup", function (err, row) { 
-
         const nickname = row.find((n)=> {
             return n.nickname === req.params.nickname;
         });
