@@ -98,6 +98,7 @@ server.get("/written", (req, res) => { // get요청이 오면
 
 });
 
+
 server.post("/written", (req, res) => { // post요청이 오면 
     let written1 = [];
     connection.query("SELECT * FROM written", function (err, row) {
