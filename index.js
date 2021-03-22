@@ -1,11 +1,8 @@
 const express = require("express");  //express 서버 구성
-const bodyParser = require('body-parser') // 바디펄스로 POST로 온 것을 확인
 const server = express();
 const http = require("http");
 const PORT = process.env.PORT || 80;  //포트번호 저장
-server.use(bodyParser.json());
 const cors = require('cors');   
-
 
 let signup1 =   //사용자 수가 들어가는 객체 선언
     [{
@@ -31,12 +28,14 @@ let connection = mysql.createConnection({    //MYSQL CONNECTION
     database : 'heroku_780fd63b35029e5'
    });
 
-
+  
 setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주소를 계속 보내줌
     http.get("http://noticeboardserverr.herokuapp.com/signup");
     http.get("http://noticeboardserverr.herokuapp.com/written");
     connection.query('select 1 + 1', (err, rows) => { /* */ });
 }, 3000);
+
+
 
 server.get("/signup/email=:email", (req, res) => { // get요청이 오면 
 
@@ -47,7 +46,7 @@ server.get("/signup/email=:email", (req, res) => { // get요청이 오면
         if(email){
             res.json(email);  // 서버에 json으로 보내기
         }else{
-            res.json({email: "Email was not found"});
+            res.json({email: "Email was not found"}); // 서버에 오류 객체를 보낸다.
         }
 
     });
@@ -62,7 +61,7 @@ server.get("/signup/nickname=:nickname", (req, res) => { // get요청이 오면
         if(nickname){
             res.json(nickname);  // 서버에 json으로 보내기
         }else{
-            res.json({nickname: "Nickname was not found"});
+            res.json({nickname: "Nickname was not found"});// 서버에 오류 객체를 보낸다.
         }
 
     });
@@ -80,15 +79,14 @@ server.get("/signup", (req, res) => { // get요청이 오면
 
 
 server.post("/signup", (req, res) => { // post요청이 오면 
-
     connection.query("SELECT * FROM signup", function (err, row) {
         signup1 = req.body;                             //POST로 전송된 jSON signup1에 저장
         res.json(row);                                  // 서버에 json으로 보내기 
         let email01 = signup1.email, password01 = signup1.password, nickname01 = signup1.nickname;  //변수에 POST 전송으로 온 값을 저장
         let sql = ("INSERT into signup( email, password, nickname)values('" + email01 + "','" + password01 + "','" + nickname01 + "')");//id, email, password, nickname
         
-        if (email01 != undefined && password01 != undefined && nickname01 != undefined ) {
-            connection.query(sql, function (err, res) {
+        if (email01 != undefined && password01 != undefined && nickname01 != undefined ) { //값들이 빈 값이 아니라면
+            connection.query(sql, function (err, res) { // 데이터를 인설트
                 if (err) throw err;
                 console.log("Insert add");
             });
@@ -105,7 +103,6 @@ server.get("/written", (req, res) => { // get요청이 오면
 });
 
 server.post("/written", (req, res) => { // post요청이 오면 
-
     connection.query("SELECT * FROM written", function (err, row) {
         written1 = req.body;                             //POST로 전송된 jSON signup1에 저장
         res.json(row);                                  // 서버에 json으로 보내기 
@@ -113,8 +110,8 @@ server.post("/written", (req, res) => { // post요청이 오면
         let nickname01=written1.nickname, title01 = written1.title, data01 = written1.date,  maintext01 = written1.maintext;
         let sql = ("INSERT into written( nickname, title, date, maintext)values('" + nickname01 + "','" + title01 + "','" + data01 + "','"+ maintext01 +"')");//id, email, password, nickname
         
-        if (nickname01 != undefined && title01 != undefined && data01 != undefined && maintext01 != undefined) {
-            connection.query(sql, function (err, res) {
+        if (nickname01 != undefined && title01 != undefined && data01 != undefined && maintext01 != undefined) { //데이터가 빈 값이 아니면
+            connection.query(sql, function (err, res) { //데이터들을 인설트
                 
                 if (err) throw err;
                 console.log("Insert add");
@@ -125,7 +122,6 @@ server.post("/written", (req, res) => { // post요청이 오면
 
 
 server.post("/written/delete", (req, res) => { // post요청이 오면 
-
     connection.query("SELECT * FROM written", function (err, row) {
         written1 = req.body;                             //POST로 전송된 jSON signup1에 저장
         res.json(row);                                  // 서버에 json으로 보내기 
@@ -133,8 +129,8 @@ server.post("/written/delete", (req, res) => { // post요청이 오면
         let nickname01=written1.nickname, title01 = written1.title, data01 = written1.date,  maintext01 = written1.maintext;
         let sql = ("DELETE from written where nickname = '" + nickname01 + "'and title = '" + title01 + "'and date = '" + data01 + "'and maintext = '"+ maintext01 +"'");//id, email, password, nickname
         
-        if (nickname01 != undefined && title01 != undefined && data01 != undefined && maintext01 != undefined) {
-            connection.query(sql, function (err, res) {
+        if (nickname01 != undefined && title01 != undefined && data01 != undefined && maintext01 != undefined) { //데이터들이 빈 값이 아니라면
+            connection.query(sql, function (err, res) { //데이터를 데이터베이스에서 삭제
                 
                 if (err) throw err;
                 console.log("delete");
@@ -144,7 +140,6 @@ server.post("/written/delete", (req, res) => { // post요청이 오면
 });
 
 server.post("/written/update", (req, res) => { // post요청이 오면 
-
     connection.query("SELECT * FROM written", function (err, row) {
         written1 = req.body;                             //POST로 전송된 jSON signup1에 저장
         res.json(row);                                  // 서버에 json으로 보내기 
@@ -152,8 +147,8 @@ server.post("/written/update", (req, res) => { // post요청이 오면
         let nickname01=written1.nickname, title01 = written1.title, data01 = written1.date,  maintext01 = written1.maintext, title02 = written1.title2, maintext02 = written1.maintext2;
         let sql = ("DELETE from written where nickname = '" + nickname01 + "'and title = '" + title01 + "'and date = '" + data01 + "'and maintext = '"+ maintext01 +"'");//id, email, password, nickname
         let UPDATE = "UPDATE written SET title = '" + title02 + "', maintext = '"+ maintext02 + "' WHERE nickname = '" + nickname01 + "'and title = '" + title01 + "'and date = '" + data01 + "'and maintext = '"+ maintext01 +"'"
-        if (nickname01 != undefined && title01 != undefined && data01 != undefined && maintext01 != undefined) {
-            connection.query(UPDATE, function (err, res) {
+        if (nickname01 != undefined && title01 != undefined && data01 != undefined && maintext01 != undefined) { //데이터들이 빈값이 아니라면
+            connection.query(UPDATE, function (err, res) { //데이터를 데이터베이스에 업데이트
                 
                 if (err) throw err;
                 console.log("update");
@@ -163,7 +158,4 @@ server.post("/written/update", (req, res) => { // post요청이 오면
 });
 
 
-
-
 server.listen(PORT);
-
