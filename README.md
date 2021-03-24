@@ -23,4 +23,4 @@ notice-board-server는 notice-board의 로그인, 글 작성, 글 수정, 글 �
 <p align="center"><img src="https://user-images.githubusercontent.com/67909892/111973710-20d71100-8b42-11eb-9167-a733aad0f08a.png" align="center" width="44%"><img src="https://user-images.githubusercontent.com/67909892/111973836-406e3980-8b42-11eb-8ece-3b5afbdefe96.png" align="center" width="40%"></p>
 <p align="center"> "/signup/email=:email" , "/signup/nickname=:nickname" 주소에 :email, :nickname에 웹사이트에서 이메일과 닉네임을 넣어서 웹서버에 요청하면 그 이메일과 닉네임에 해당하는 회원 정보를 쉽게 조회 할 수 있다. 웹사이트에서는 조회해서 중복 회원을 확인하고 방지한다.</p>
 
-웹서버 사이트 : https://noticeboardserverr.herokuapp.com/
+웹서버 사이트 : https://noticeboardserverr.herokuapp.com
