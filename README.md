@@ -6,7 +6,7 @@
 
 # 사용 기술 
 Hroku(웹호스팅), node.js, express, ClearDB(Mysql)
-<p>프론트엔드 : https://github.com/chltpgus/notice-board </p>
+
 
 # 프로젝트 설명
 notice-board-server는 notice-board의 로그인, 글 작성, 글 수정, 글 삭제 등을 해주는 웹서버다.
