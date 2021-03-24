@@ -36,7 +36,6 @@ setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주�
 }, 3000);
 
 
-
 server.get("/signup/email=:email", (req, res) => { // 회원 정보 email get 요청이 오면
 
     connection.query("SELECT * FROM signup", function (err, row) {  //데이터베이스 signup을 선택해서
