@@ -42,6 +42,14 @@ server.get("/signup", (req, res) => { // get요청이 오면
     });
 });
 
+server.get("/written", (req, res) => { // get요청이 오면 
+
+    connection.query("SELECT * FROM written", function (err, row) { //written 데이터베이스 SELECT
+        res.json(row);                       //  서버에 값들을 전송한다.         
+    });
+
+});
+
 server.post("/signup", (req, res) => { // post전송이 오면 
 
     connection.query("SELECT * FROM signup", function (err, row) {
