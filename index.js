@@ -35,7 +35,22 @@ setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주�
     connection.query('select 1 + 1', (err, rows) => { /* */ });
 }, 3000);
 
+server.get("/signup", (req, res) => { // get요청이 오면 
 
+    connection.query("SELECT * FROM signup", function (err, row) { //signup 데이터베이스 SELECT
+        res.json(row);    //        signup 정보를 서버에 전송                 
+    });
+
+    
+});
+
+server.get("/written", (req, res) => { // get요청이 오면 
+
+    connection.query("SELECT * FROM written", function (err, row) { //written 데이터베이스 SELECT
+        res.json(row);                       //  서버에 값들을 전송한다.         
+    });
+
+});
 
 server.get("/signup/email=:email", (req, res) => { // 회원 정보 email get 요청이 오면
 
@@ -67,14 +82,6 @@ server.get("/signup/nickname=:nickname", (req, res) => { // 회원 정보 nickna
  
 });
 
-server.get("/signup", (req, res) => { // get요청이 오면 
-
-    connection.query("SELECT * FROM signup", function (err, row) { //signup 데이터베이스 SELECT
-        res.json(row);    //        signup 정보를 서버에 전송                 
-    });
-
-    
-});
 
 
 server.post("/signup", (req, res) => { // post전송이 오면 
@@ -92,14 +99,6 @@ server.post("/signup", (req, res) => { // post전송이 오면
             });
         }
     });
-});
-
-server.get("/written", (req, res) => { // get요청이 오면 
-
-    connection.query("SELECT * FROM written", function (err, row) { //written 데이터베이스 SELECT
-        res.json(row);                       //  서버에 값들을 전송한다.         
-    });
-
 });
 
 server.post("/written", (req, res) => { // post전송이 오면 
