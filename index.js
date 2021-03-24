@@ -35,47 +35,12 @@ setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주�
     connection.query('select 1 + 1', (err, rows) => { /* */ });
 }, 3000);
 
-
-
-server.get("/signup/email=:email", (req, res) => { // 회원 정보 email get 요청이 오면
-
-    connection.query("SELECT * FROM signup", function (err, row) {  //데이터베이스 signup을 선택해서
-        const email = row.find((e)=> {
-            return e.email === req.params.email;
-        });
-        if(email){
-            res.json(email);  // 이메일 값을 json으로 서버에 보낸다
-        }else{
-            res.json({email: "Email was not found"}); // 없으면 에러 값 출력
-        }
-    });
- 
-});
-server.get("/signup/nickname=:nickname", (req, res) => { // 회원 정보 nickname get 요청이 오면
-
-    connection.query("SELECT * FROM signup", function (err, row) { //데이터베이스 signup을 선택해서
-        const nickname = row.find((n)=> {
-            return n.nickname === req.params.nickname;
-        });
-        if(nickname){
-            res.json(nickname);  // 닉네임 값을 json으로 서버에 보낸다
-        }else{
-            res.json({nickname: "Nickname was not found"}); // 없으면 에러 값 출력
-        }
-
-    });
- 
-});
-
 server.get("/signup", (req, res) => { // get요청이 오면 
 
     connection.query("SELECT * FROM signup", function (err, row) { //signup 데이터베이스 SELECT
         res.json(row);    //        signup 정보를 서버에 전송                 
     });
-
-    
 });
-
 
 server.post("/signup", (req, res) => { // post전송이 오면 
 
@@ -93,6 +58,34 @@ server.post("/signup", (req, res) => { // post전송이 오면
         }
     });
 });
+
+server.get("/signup/email=:email", (req, res) => { // 회원 정보 email get 요청이 오면
+    connection.query("SELECT * FROM signup", function (err, row) {  //데이터베이스 signup을 선택해서
+        const email = row.find((e)=> {
+            return e.email === req.params.email;
+        });
+        if(email){
+            res.json(email);  // 이메일 값을 json으로 서버에 보낸다
+        }else{
+            res.json({email: "Email was not found"}); // 없으면 에러 값 출력
+        }
+    });
+});
+
+server.get("/signup/nickname=:nickname", (req, res) => { // 회원 정보 nickname get 요청이 오면
+    connection.query("SELECT * FROM signup", function (err, row) { //데이터베이스 signup을 선택해서
+        const nickname = row.find((n)=> {
+            return n.nickname === req.params.nickname;
+        });
+        if(nickname){
+            res.json(nickname);  // 닉네임 값을 json으로 서버에 보낸다
+        }else{
+            res.json({nickname: "Nickname was not found"}); // 없으면 에러 값 출력
+        }
+    });
+});
+
+
 
 server.get("/written", (req, res) => { // get요청이 오면 
 
