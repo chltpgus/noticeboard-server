@@ -33,7 +33,7 @@ setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주�
     http.get("http://noticeboardserverr.herokuapp.com/signup");
     http.get("http://noticeboardserverr.herokuapp.com/written");
     connection.query('select 1 + 1', (err, rows) => { /* */ });
-}, 3000);
+}, 30000);
 
 
 server.get("/signup/email=:email", (req, res) => { // 회원 정보 email get 요청이 오면
