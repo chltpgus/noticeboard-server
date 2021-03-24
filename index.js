@@ -48,7 +48,6 @@ server.get("/signup/email=:email", (req, res) => { // 회원 정보 email get �
         }else{
             res.json({email: "Email was not found"}); // 없으면 에러 값 출력
         }
-
     });
  
 });
