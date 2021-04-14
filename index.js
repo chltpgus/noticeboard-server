@@ -40,7 +40,6 @@ server.get("/signup", (req, res) => { // get요청이 오면
     connection.query("SELECT * FROM signup", function (err, row) { //signup 데이터베이스 SELECT
         res.json(row);    //        signup 정보를 서버에 전송                 
     });
-
     
 });
 
