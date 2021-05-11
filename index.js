@@ -12,7 +12,7 @@ let signup1 =   //사용자 수가 들어가는 객체 선언
     }];
 
 const corsOptions = {  //클라이언트가 cors문제 없이 들어 올 수 있게 권한을 줌
-  origin: "https://bulletinboardsite.netlify.app",
+  origin: "https://bulletinboardsite.netlify.app"|"https://localhost:3000",
   credentials: true
 }
 server.use(cors(corsOptions));
@@ -28,18 +28,6 @@ let connection = mysql.createConnection({    //MYSQL CONNECTION
     database : 'heroku_780fd63b35029e5'
    });
 
-   exports.handler = async (event) => {
-    const response = {
-        statusCode: 200,
-        headers: {
-            "Access-Control-Allow-Headers" : "Content-Type",
-            "Access-Control-Allow-Origin": "httpS://localhost:3000/",
-            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
-        },
-        body: JSON.stringify('Hello from Lambda!'),
-    };
-    return response;
-};
    
 
 setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주소를 계속 보내줌
