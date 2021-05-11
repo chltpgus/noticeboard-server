@@ -28,6 +28,7 @@ let connection = mysql.createConnection({    //MYSQL CONNECTION
     database : 'heroku_780fd63b35029e5'
    });
 
+   
 
 setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주소를 계속 보내줌
     http.get("http://noticeboardserverr.herokuapp.com/signup");
