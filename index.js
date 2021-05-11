@@ -28,6 +28,18 @@ let connection = mysql.createConnection({    //MYSQL CONNECTION
     database : 'heroku_780fd63b35029e5'
    });
 
+   exports.handler = async (event) => {
+    const response = {
+        statusCode: 200,
+        headers: {
+            "Access-Control-Allow-Headers" : "Content-Type",
+            "Access-Control-Allow-Origin": "httpS://localhost:3000/",
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+        },
+        body: JSON.stringify('Hello from Lambda!'),
+    };
+    return response;
+};
    
 
 setInterval(() => {   //MYSQL이 방치되면 꺼지는 것을 막기위해 주소를 계속 보내줌
