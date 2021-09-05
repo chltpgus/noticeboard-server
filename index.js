@@ -2,7 +2,7 @@ const express = require('express'); //express 서버 구성
 const bodyParser = require('body-parser'); // 바디펄스로 POST로 온 것을 확인
 const server = express();
 const http = require('http');
-const PORT = process.env.PORT || 80; //포트번호 저장
+const PORT = process.env.PORT; //포트번호 저장
 server.use(bodyParser.json());
 const cors = require('cors');
 
